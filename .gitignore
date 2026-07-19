@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Sample documents
+data/raw/*.pdf
+data/processed/*
+data/vector_db/*
