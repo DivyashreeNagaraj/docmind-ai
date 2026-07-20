@@ -2,28 +2,26 @@ import re
 
 
 class TextPreprocessor:
-    """
-    Cleans extracted document text before chunking.
-    """
 
-    def clean(self, text: str) -> str:
-        """
-        Clean extracted text.
-
-        Args:
-            text (str): Raw text extracted from PDF.
-
-        Returns:
-            str: Cleaned text.
-        """
-
-        # Remove leading/trailing whitespace
+    def clean(self, text):
         text = text.strip()
+        text = re.sub(r"\s+", " ", text)
+        return text
+    
+    def remove_front_matter(self, text):
+        """
+        Remove common non-content sections such as
+        cover pages and table of contents.
+        """
 
-        # Replace multiple spaces with one
-        text = re.sub(r"[ \t]+", " ", text)
+        patterns = [
+            r"Table of Contents.*?(?=1\.\s)",
+            r"List of Figures.*?(?=1\.\s)",
+            r"List of Tables.*?(?=1\.\s)"
+        ]
+        
+        for pattern in patterns:
+            text = re.sub(pattern, "", text, flags=re.DOTALL | re.IGNORECASE)
 
-        # Replace multiple blank lines with two newlines
-        text = re.sub(r"\n\s*\n+", "\n\n", text)
 
         return text

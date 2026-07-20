@@ -18,6 +18,7 @@ def main():
     # Step 2: Clean the extracted text
     preprocessor = TextPreprocessor()
     clean_text = preprocessor.clean(document["text"])
+    clean_text = preprocessor.remove_front_matter(clean_text)
 
     # Step 3: Split text into chunks
     chunker = TextChunker(
