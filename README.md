@@ -101,9 +101,9 @@ docmind-ai/
 - [x] Project initialization
 - [x] Project structure
 - [x] PDF document loader
-- [ ] Text preprocessing
-- [ ] Intelligent chunking
-- [ ] Embedding generation
+- [x] Text preprocessing
+- [x] Intelligent chunking
+- [x] Embedding generation
 - [ ] Vector database
 - [ ] Semantic retrieval
 - [ ] RAG pipeline

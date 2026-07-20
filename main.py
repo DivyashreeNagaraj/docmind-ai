@@ -3,6 +3,7 @@ from app.ingestion.document_loader import DocumentLoader
 from app.preprocessing.text_preprocessor import TextPreprocessor
 from app.chunking.text_chunker import TextChunker
 from app.embeddings.embedding_generator import EmbeddingGenerator
+from app.retrieval.vector_store import VectorStore
 
 def main():
     # Step 1: Load the PDF
@@ -23,6 +24,10 @@ def main():
 
     embedded_chunks = embedding_generator.generate(chunks)
 
+    # Store embeddings in vector database
+    vector_store = VectorStore()
+    vector_store.add_documents(embedded_chunks)
+
     # Display document information
     print(f"Filename : {document['filename']}")
     print(f"Pages    : {document['pages']}")
@@ -39,6 +44,9 @@ def main():
     print("\nFirst 10 Values of First Embedding:\n")
 
     print(embedded_chunks[0]["embedding"][:10])
+    print("\nDatabase Statistics")
+    print("=" * 60)
+    print(f"Stored Chunks : {vector_store.count()}")
 
 
     for chunk in embedded_chunks[:3]:      # Display first 3 chunks only
