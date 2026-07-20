@@ -32,10 +32,14 @@ class VectorStore:
 
             embeddings.append(chunk["embedding"].tolist())
 
-            metadatas.append({
+            metadatas.append(
+                {
                 "start": chunk["start"],
-                "end": chunk["end"]
-            })
+                "end": chunk["end"],
+                "page": chunk.get("page", "Unknown")
+
+            }
+            )
 
         self.collection.add(
             ids=ids,

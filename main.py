@@ -105,6 +105,16 @@ def main():
     print("=" * 60)
     print(answer)
 
+    print("\nSources")
+    print("=" * 60)
+
+    for i, meta in enumerate(metadatas, start=1):
+        print(
+            f"Source {i}: "
+            f"Page {meta.get('page', 'Unknown')} "
+            f"(Characters {meta['start']} - {meta['end']})"
+        )
+
 
 if __name__ == "__main__":
     main()

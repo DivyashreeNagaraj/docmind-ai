@@ -18,15 +18,24 @@ class DocumentLoader:
 
         reader = PdfReader(pdf_path)
 
-        text = ""
+        full_text = ""
+        page_texts = []
 
-        for page in reader.pages:
-            extracted = page.extract_text()
-            if extracted:
-                text += extracted + "\n"
+        for page_num, page in enumerate(reader.pages, start=1):
+            extracted = page.extract_text() or ""
+
+            full_text += extracted + "\n"
+
+            page_texts.append(
+                {
+                    "page": page_num,
+                    "text": extracted
+                }
+            )
 
         return {
             "filename": pdf_path.name,
             "pages": len(reader.pages),
-            "text": text,
+            "text": full_text,
+            "page_texts": page_texts
         }
