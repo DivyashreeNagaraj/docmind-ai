@@ -21,14 +21,14 @@ class DocumentLoader:
         full_text = ""
         page_texts = []
 
-        for page_num, page in enumerate(reader.pages, start=1):
+        for page_number, page in enumerate(reader.pages, start=1):
             extracted = page.extract_text() or ""
 
             full_text += extracted + "\n"
 
             page_texts.append(
                 {
-                    "page": page_num,
+                    "page": page_number,
                     "text": extracted
                 }
             )

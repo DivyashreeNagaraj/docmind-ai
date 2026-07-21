@@ -34,13 +34,14 @@ class VectorStore:
 
             metadatas.append(
                 {
-                "start": chunk["start"],
-                "end": chunk["end"],
-                "page": chunk.get("page", "Unknown")
-
-            }
+                    "start": int(chunk["start"]),
+                    "end": int(chunk["end"]),
+                    "page": int(chunk["page"])
+                }
             )
 
+        print(embedded_chunks[0])
+        print(metadatas[0])
         self.collection.add(
             ids=ids,
             documents=documents,

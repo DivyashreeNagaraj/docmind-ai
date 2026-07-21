@@ -25,7 +25,7 @@ def main():
         chunk_size=1000,
         chunk_overlap=200
     )
-    chunks = chunker.chunk(clean_text)
+    chunks = chunker.chunk(document["page_texts"])
 
     # generate embeddings for the chunks
     embedding_generator = EmbeddingGenerator()

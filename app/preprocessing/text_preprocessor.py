@@ -5,7 +5,12 @@ class TextPreprocessor:
 
     def clean(self, text):
         text = text.strip()
-        text = re.sub(r"\s+", " ", text)
+         # Remove multiple spaces but keep line breaks
+        text = re.sub(r"[ \t]+", " ", text)
+
+        # Remove excessive blank lines
+        text = re.sub(r"\n{3,}", "\n\n", text)
+
         return text
     
     def remove_front_matter(self, text):

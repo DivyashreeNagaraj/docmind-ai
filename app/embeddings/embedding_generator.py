@@ -41,6 +41,7 @@ class EmbeddingGenerator:
 
             embedded_chunks.append({
                 "chunk_id": chunk["chunk_id"],
+                "page": chunk["page"], 
                 "text": chunk["text"],
                 "start": chunk["start"],
                 "end": chunk["end"],
