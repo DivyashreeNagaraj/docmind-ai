@@ -3,20 +3,19 @@ from pypdf import PdfReader
 
 
 class DocumentLoader:
-    def load_pdf(self, file_path: str) -> dict:
+     def load_document(self, uploaded_file):
+
         """
         Load a PDF file and extract its text.
 
         Args:
-            file_path (str): Path to the PDF file.
+        uploaded_file: Uploaded PDF file from Streamlit.
 
         Returns:
             dict: Metadata and extracted text.
         """
 
-        pdf_path = Path(file_path)
-
-        reader = PdfReader(pdf_path)
+        reader = PdfReader(uploaded_file)
 
         full_text = ""
         page_texts = []
@@ -34,7 +33,7 @@ class DocumentLoader:
             )
 
         return {
-            "filename": pdf_path.name,
+            "filename": uploaded_file.name,
             "pages": len(reader.pages),
             "text": full_text,
             "page_texts": page_texts

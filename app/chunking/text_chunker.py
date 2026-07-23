@@ -1,6 +1,3 @@
-from email.mime import text
-
-
 class TextChunker:
 
     """Splits cleaned text into overlapping paragraph-aware chunks."""
@@ -8,7 +5,7 @@ class TextChunker:
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
 
-    def chunk(self, page_texts):
+    def create_chunks(self, page_texts):
 
         chunks = []
         chunk_id = 1
@@ -46,11 +43,11 @@ class TextChunker:
                         "end": end
                     })
 
-                    overlap = current_chunk[-self.chunk_overlap:]
+                    overlap_text = current_chunk[-self.chunk_overlap:]
 
-                    current_chunk = overlap + paragraph + "\n\n"
+                    current_chunk = overlap_text + paragraph + "\n\n"
 
-                    start = end - self.chunk_overlap
+                    start = max(0, end - self.chunk_overlap)
                     chunk_id += 1
 
             if current_chunk:

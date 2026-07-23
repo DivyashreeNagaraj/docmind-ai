@@ -110,3 +110,14 @@ docmind-ai/
 - [ ] Evaluation framework
 - [ ] Streamlit UI
 - [ ] Deployment
+
+
+<p align="center">
+  <img src="assets/docmind_logo.png" width="250">
+</p>
+
+<h1 align="center">DocMind AI</h1>
+
+<p align="center">
+AI Research Assistant with Retrieval-Augmented Generation (RAG)
+</p>

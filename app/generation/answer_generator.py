@@ -9,14 +9,20 @@ class AnswerGenerator:
     def __init__(self, model="llama3.2"):
         self.model = model
 
-    def generate(self, question, context):
+    def generate_answer(self, question, retrieved_chunks):
+
+        context = "\n\n".join(
+    chunk["text"] for chunk in retrieved_chunks
+)
 
         prompt = f"""
-You are an AI research assistant.
+You are DocMind AI, an intelligent research assistant.
 
-Use ONLY the provided context to answer the question.
+Answer the user's question ONLY using the provided context.
 
-If the answer is partially available, answer with the available information.
+If the answer cannot be found in the context, say:
+
+"I couldn't find enough information in the uploaded document to answer this question."
 
 Do not make up facts.
 

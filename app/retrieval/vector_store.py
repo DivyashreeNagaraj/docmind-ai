@@ -1,5 +1,4 @@
 import chromadb
-from chromadb.config import Settings
 
 
 class VectorStore:
@@ -17,8 +16,29 @@ class VectorStore:
             name="documents"
         )
 
-    def add_documents(self, embedded_chunks):
+    def clear_collection(self):
+        """
+        Deletes all documents from the collection.
+        """
 
+        try:
+            self.client.delete_collection("documents")
+        except Exception:
+            # Collection may not exist yet
+            pass
+
+        self.collection = self.client.get_or_create_collection(
+            name="documents"
+        )
+
+    def add_documents(self, embedded_chunks):
+        """
+        Store embedded document chunks in ChromaDB.
+
+        Args:
+            embedded_chunks (list): List of chunk dictionaries containing
+            text, metadata, and embeddings.
+        """
         ids = []
         documents = []
         embeddings = []
@@ -40,8 +60,6 @@ class VectorStore:
                 }
             )
 
-        print(embedded_chunks[0])
-        print(metadatas[0])
         self.collection.add(
             ids=ids,
             documents=documents,
@@ -49,8 +67,7 @@ class VectorStore:
             metadatas=metadatas
         )
 
-        print(f"{len(ids)} chunks stored successfully.")
-
+        return len(ids)
     def count(self):
 
-        return self.collection.count()
+        return self.collection.count()    

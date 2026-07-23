@@ -1,6 +1,4 @@
 from sentence_transformers import SentenceTransformer
-
-
 class EmbeddingGenerator:
     """
     Generates semantic embeddings for text chunks.
@@ -13,13 +11,11 @@ class EmbeddingGenerator:
         Args:
             model_name (str): Hugging Face sentence transformer model.
         """
-        print(f"Loading embedding model: {model_name}...")
 
         self.model = SentenceTransformer(model_name)
 
-        print("Embedding model loaded successfully.\n")
 
-    def generate(self, chunks):
+    def generate_embeddings(self, chunks):
         """
         Generate embeddings for all chunks.
 
