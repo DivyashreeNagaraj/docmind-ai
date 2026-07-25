@@ -35,9 +35,7 @@ st.set_page_config(
 )
 # Sidebar
 with st.sidebar:
-    st.image(LOGO, width= 170)
-
-    st.markdown("---")
+    st.image(LOGO, width= 200)
 
     st.markdown("### ✨ AI Research Assistant")
 
@@ -58,10 +56,10 @@ Retrieval-Augmented Generation (RAG).
 
     # Header
 
-header_col1, header_col2 = st.columns([1, 5])
+header_col1, header_col2 = st.columns([1.6, 4.4])
 
 with header_col1:
-    st.image(LOGO, width=190)
+    st.image(LOGO, width=240)
 
 with header_col2:
 
@@ -80,13 +78,13 @@ st.divider()
 
 # Layout
 
-st.markdown("## 📂 Upload & Query")
+st.markdown("## 🚀 Document Analysis")
 with st.container(border=True):
     left, right = st.columns([1, 2], gap="large")
 
     with left:
 
-        st.markdown("### 📂 Upload Document")
+        st.markdown("###  📤 Upload Document")
 
         uploaded_file = st.file_uploader(
             "Choose a PDF file",
@@ -125,7 +123,7 @@ if generate:
         st.warning(" ⚠️ Please enter a question.")
         st.stop()
 
-    with st.spinner("🧠 Processing document..."):
+    with st.spinner("📄 Reading document and generating AI response..."):
 
             
             # Step 1: Load the PDF
@@ -203,13 +201,14 @@ if generate:
 
         # Answer
 
-            st.subheader(" 🤖 AI Generated Answer")
+            st.subheader(" 💡 AI Generated Answer")
 
-            with st.chat_message("assistant"):
+            with st.container(border=True):
+                st.markdown(answer)
             
-        # Sources
+            # Sources
 
-                st.subheader("📚 Sources")
+            st.subheader("📚 Sources")
 
             if retrieved_chunks:
 
